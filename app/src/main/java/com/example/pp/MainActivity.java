@@ -26,8 +26,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     ListView lista;
-    TextView nombre;
+
     ArrayList mobileArray;
+    ArrayList nombre;
 
 
     @Override
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-    private ArrayList numeroContactos(){
+    /*private ArrayList numeroContactos(){
         ArrayList<String> numerList = new ArrayList<>();
         Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME+" ASC");
         while (phones.moveToNext())
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         phones.close();
         return numerList;
-    }
+    }*/
 
     private ArrayList nombreContactos(){
         ArrayList<String> nameList = new ArrayList<>();
@@ -141,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
     public void inicializar(){
-        nombre = findViewById(R.id.txtNombre);
+
         lista = findViewById(R.id.lista);
 
 
@@ -155,6 +156,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        String nombre = parent.getItemAtPosition(position).toString();
+        Toast.makeText(this, "Nombre: " + nombre, Toast.LENGTH_SHORT).show();
 
     }
 }
