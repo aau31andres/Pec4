@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -31,10 +32,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayList nombre;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         inicializar();
 
 
@@ -73,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         phones.close();
         return numerList;
     }*/
+
 
     private ArrayList nombreContactos(){
         ArrayList<String> nameList = new ArrayList<>();
@@ -158,7 +163,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         String nombre = parent.getItemAtPosition(position).toString();
+        Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME+" ASC");
         Toast.makeText(this, "Nombre: " + nombre, Toast.LENGTH_SHORT).show();
+
+        Intent datosContactos = new Intent(this,DatosContacto.class);
+        String name= String.valueOf(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+
+
+        datosContactos.putExtra("nombre", name);
+
+
+        startActivity(datosContactos);
+
+
+        finish();
 
     }
 }
