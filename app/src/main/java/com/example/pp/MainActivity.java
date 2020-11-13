@@ -4,30 +4,20 @@ package com.example.pp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
-
 import android.Manifest;
-
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-
 import android.os.Bundle;
-
 import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.View;
-
 import android.widget.AdapterView;
-
 import android.widget.ListView;
-
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.TwoLineListItem;
-
 import java.util.ArrayList;
+import java.lang.String;
 
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
@@ -45,10 +35,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         inicializar();
-
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_CONTACTS)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -58,8 +45,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
         Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME+" ASC");
-
-
 
         SimpleCursorAdapter adaptador = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, phones, PROJECTION2, new int[]{android.R.id.text1});
 
@@ -82,20 +67,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             String nombre = phones.getString(phones.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
             String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
-
-
-
             numerList.add(nombre);
             numerList2.add(phoneNumber);
-
-
 
         }
         phones.close();
         return numerList;
     }
-
-
 
 
 
@@ -115,8 +93,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void inicializar() {
 
         lista = findViewById(R.id.lista);
-
-
     }
 
     @Override
@@ -125,31 +101,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private static final String[] PROJECTION2 = new String[]{
-
-
-
             ContactsContract.Contacts.DISPLAY_NAME,
             ContactsContract.Contacts._ID
-
     };
 
     private static final String[] PROJECTION = new String[]{
-
             ContactsContract.Contacts.DISPLAY_NAME,
             ContactsContract.CommonDataKinds.Phone.NUMBER
     };
 
-
-
-
-
-
-
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
 
             Intent datosContactos = new Intent(this, DatosContacto.class);
 
@@ -163,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             phones.moveToFirst();
             String n = phones.getString(1);
-
 
             datosContactos.putExtra("numero",n);
 
