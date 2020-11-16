@@ -10,12 +10,16 @@
     <TextView
         android:id="@+id/txtNombreContacto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_height="70dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/txtNumeroContacto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_height="75dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="24sp" />
 </LinearLayout>

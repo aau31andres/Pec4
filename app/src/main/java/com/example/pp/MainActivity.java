@@ -84,8 +84,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(this, "no tiene permisos", Toast.LENGTH_SHORT).show();
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS}, 225);
-        } else {
-            Toast.makeText(this, "siiii tiene permisos", Toast.LENGTH_SHORT).show();
         }
     }
 
